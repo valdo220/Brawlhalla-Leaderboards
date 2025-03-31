@@ -1,0 +1,115 @@
+/* body {
+    position: relative;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url() center/cover no-repeat;
+    filter: brightness(50%);
+    z-index: -1;
+} */
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.button {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.titleName {
+    color: black;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+}
+.next-button {
+    background-color: #474747;
+    color: white;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    padding: 8px 13px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.next-button:hover {
+    background-color: #767676 ;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+.next-button:active {
+    transform: scale(0.95);
+}
+.previous-button {
+    background-color: #474747 ;
+    color: white;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    padding: 8px 13px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.previous-button:hover {
+    background-color: #767676 ;
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+.previous-button:active {
+    transform: scale(0.95);
+}
+.leaderboard {
+    margin: 10px 80px;
+}
+.border {
+    border: solid 3px;
+    border-color: black;
+    border-radius: 10px;
+}
+.properties-of-leaderboard {
+    display: flex;
+    font-size: 1.2rem;
+    gap: 2rem;
+    text-align: center;
+}
+.first-three{
+    text-align: center;
+}
+.rank {
+    text-align: center;
+    width: 4rem;
+}
+.name {
+    flex: auto;
+    text-align: start;
+}
+.games {
+    text-align: center;
+}
+.winLoss {
+    text-align: center;
+}
+.winrate {
+    text-align: center;
+}
+.elo {
+    text-align: start;
+    width: 10rem;
+}
+.properties-inside-leaderboard {
+    display: flex;
+    gap: 2rem;
+    text-align: center;
+}
