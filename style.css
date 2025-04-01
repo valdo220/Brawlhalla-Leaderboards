@@ -70,6 +70,18 @@ body{
 .previous-button:active {
     transform: scale(0.95);
 }
+.number-icon {
+    background-color: #474747 ;
+    color: white;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    padding: 8px 13px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 .leaderboard {
     margin: 10px 80px;
 }
@@ -78,17 +90,19 @@ body{
     border-color: black;
     border-radius: 10px;
 }
-.properties-of-leaderboard {
-    display: flex;
-    gap: 3rem;
+.properties-of-leaderboard, .properties-inside-leaderboard {
+    display: grid;
+    grid-template-columns: 3rem 5rem 5rem auto 5rem 8rem 6rem 6rem;
+    gap: 1rem;
     text-align: center;
+    align-items: center;
 }
 .first-three{
     text-align: center;
 }
 .rank {
     text-align: center;
-    width: 4rem;
+    width: 3rem;
 }
 .name {
     flex: auto;
@@ -106,11 +120,6 @@ body{
 .elo {
     text-align: start;
     width: 6rem;
-}
-.properties-inside-leaderboard {
-    display: flex;
-    gap: 2rem;
-    text-align: center;
 }
 .container {
     gap: 2rem;

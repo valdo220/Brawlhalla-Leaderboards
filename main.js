@@ -2,6 +2,9 @@ import { BASE_URL } from "./secrets.js"
 import { API_KEY } from "./secrets.js"
 const original = document.getElementById("original")
 const container = document.getElementById("container")
+const nextButtons = document.querySelectorAll(".next-button")
+const numberIcon = document.querySelectorAll(".number-icon")
+console.log(nextButtons)
 
 async function myApp() {
     let page = 1
@@ -48,11 +51,28 @@ console.log(data)
             allClones[i].querySelector('.name').textContent = data[i].name
             allClones[i].querySelector('.games').textContent = data[i].games
             allClones[i].querySelector('.winLoss').innerHTML = 
-            `<span style="color: green;">${data[i].wins}W</span> 
+            `<span style="color: green;">${data[i].wins}W</span>
             <span style="color: red;">${losses}L</span>`
-            allClones[i].querySelector('.elo').textContent = data[i].rating
             allClones[i].querySelector('.winrate').textContent = winRate
+            allClones[i].querySelector('.elo').innerHTML = data[i].rating +
+            `<span style="color: gray; font-size: 12px;"> / ${data[i].peak_rating}</span>`
         }
     }, 2000)
+
+    let pageNumber = 1
+    nextButtons.forEach(button => {
+        if (button) {
+            button.addEventListener('click', () => {
+                if (pageNumber < 10) {
+                    pageNumber++
+                    console.log(`switching to page ${pageNumber}`)
+                    numberIcon[0].textContent = pageNumber
+                    numberIcon[1].textContent = pageNumber
+                }
+            });
+        }
+    });
+
+
 }
 myApp()
