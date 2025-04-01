@@ -80,8 +80,7 @@ body{
 }
 .properties-of-leaderboard {
     display: flex;
-    font-size: 1.2rem;
-    gap: 2rem;
+    gap: 3rem;
     text-align: center;
 }
 .first-three{
@@ -106,10 +105,16 @@ body{
 }
 .elo {
     text-align: start;
-    width: 10rem;
+    width: 6rem;
 }
 .properties-inside-leaderboard {
     display: flex;
     gap: 2rem;
     text-align: center;
+}
+.container {
+    gap: 2rem;
+}
+.textSizeForLeaderboard {
+    font-size: 1.2rem;
 }
