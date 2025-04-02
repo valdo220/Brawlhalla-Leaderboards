@@ -4,6 +4,7 @@ const original = document.getElementById("original")
 const container = document.getElementById("container")
 const nextButtons = document.querySelectorAll(".next-button")
 const numberIcon = document.querySelectorAll(".number-icon")
+const previousButtons = document.querySelectorAll(".previous-button")
 console.log(nextButtons)
 
 async function myApp() {
@@ -60,9 +61,9 @@ console.log(data)
     }, 2000)
 
     let pageNumber = 1
-    nextButtons.forEach(button => {
-        if (button) {
-            button.addEventListener('click', () => {
+    nextButtons.forEach(nextButton => {
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
                 if (pageNumber < 10) {
                     pageNumber++
                     console.log(`switching to page ${pageNumber}`)
@@ -73,6 +74,18 @@ console.log(data)
         }
     });
 
+    previousButtons.forEach(backButton => {
+        if (backButton) {
+            backButton.addEventListener('click', () =>{
+                if (pageNumber > 1) {
+                    pageNumber--
+                    console.log(`switching to page ${pageNumber}`)
+                    numberIcon[0].textContent = pageNumber
+                    numberIcon[1].textContent = pageNumber
+                }
+            })
+        }
+    })
 
 }
 myApp()
