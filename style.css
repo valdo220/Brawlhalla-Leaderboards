@@ -29,8 +29,9 @@ body{
     font-size: 2em;
     display: flex;
     justify-content: center;
+    height: fit-content;
 }
-.next-button {
+.interactive-button {
     background-color: #474747;
     color: white;
     font-size: 15px;
@@ -42,32 +43,12 @@ body{
     transition: all 0.3s ease-in-out;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.next-button:hover {
+.interactive-button:hover {
     background-color: #767676 ;
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
-.next-button:active {
-    transform: scale(0.95);
-}
-.previous-button {
-    background-color: #474747 ;
-    color: white;
-    font-size: 15px;
-    font-family: 'Poppins', sans-serif;
-    padding: 8px 13px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.previous-button:hover {
-    background-color: #767676 ;
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-}
-.previous-button:active {
+.interactive-button:active {
     transform: scale(0.95);
 }
 .number-icon {
@@ -125,4 +106,15 @@ body{
 }
 .textSizeForLeaderboard {
     font-size: 1.2rem;
+}
+.row-one {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.row-two {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
