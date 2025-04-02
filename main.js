@@ -5,7 +5,7 @@ const container = document.getElementById("container")
 const nextButtons = document.querySelectorAll(".next-button")
 const numberIcon = document.querySelectorAll(".number-icon")
 const previousButtons = document.querySelectorAll(".previous-button")
-console.log(nextButtons)
+let pageNumber = 1
 
 async function myApp() {
     let page = 1
@@ -70,34 +70,34 @@ console.log(data)
             if (nextButton) {
                 nextButton.addEventListener('click', async () => {
                     if (pageNumber < 10) {
-                        pageNumber++;
-                        page++;
-                        console.log(`Switching to page ${pageNumber}`);
-                        numberIcon[0].textContent = pageNumber;
-                        numberIcon[1].textContent = pageNumber;
+                        pageNumber++
+                        page++
+                        console.log(`Switching to page ${pageNumber}`)
+                        numberIcon[0].textContent = pageNumber
+                        numberIcon[1].textContent = pageNumber
 
                         await updateLeaderboard(page);
                     }
                 });
             }
         });
+        previousButtons.forEach(backButton => {
+            if (backButton) {
+                backButton.addEventListener('click', async () =>{
+                    if (pageNumber > 1) {
+                        pageNumber--
+                        page--
+                        console.log(`switching to page ${pageNumber}`)
+                        numberIcon[0].textContent = pageNumber
+                        numberIcon[1].textContent = pageNumber
+    
+                        await updateLeaderboard(page);
+                    }
+                })
+            }
+        })
     }, 2000)
-
-    let pageNumber = 1
-
-    previousButtons.forEach(backButton => {
-        if (backButton) {
-            backButton.addEventListener('click', () =>{
-                if (pageNumber > 1) {
-                    pageNumber--
-                    page--
-                    console.log(`switching to page ${pageNumber}`)
-                    numberIcon[0].textContent = pageNumber
-                    numberIcon[1].textContent = pageNumber
-                }
-            })
-        }
-    })
-
+    
+    
 }
 myApp()
