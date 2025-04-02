@@ -39,46 +39,58 @@ async function myApp() {
         return clones
     }
 console.log(data)
-    setTimeout(async() => {
-        let allClones = await getClones(50)
-        for (let i = 0; i < allClones.length; i++) {
-            let losses = data[i].games - data[i].wins
-            let winRateDecimal = data[i].wins / data[i].games * 100
-            let winRate = winRateDecimal.toFixed(2) + "%"
+    setTimeout(async () => {
+        async function updateLeaderboard(page) {
+            const response = await fetch(`${BASE_URL}/rankings/${bracket}/${region}/${page}?&api_key=${API_KEY}`);
+            const data = await response.json();
 
-            allClones[i].querySelector('.rank').textContent = data[i].rank
-            allClones[i].querySelector('.tier').textContent = data[i].tier
-            allClones[i].querySelector('.region').textContent = data[i].region
-            allClones[i].querySelector('.name').textContent = data[i].name
-            allClones[i].querySelector('.games').textContent = data[i].games
-            allClones[i].querySelector('.winLoss').innerHTML = 
-            `<span style="color: green;">${data[i].wins}W</span>
-            <span style="color: red;">${losses}L</span>`
-            allClones[i].querySelector('.winrate').textContent = winRate
-            allClones[i].querySelector('.elo').innerHTML = data[i].rating +
-            `<span style="color: gray; font-size: 12px;"> / ${data[i].peak_rating}</span>`
+            let allClones = await getClones(50);
+            for (let i = 0; i < allClones.length; i++) {
+                let losses = data[i].games - data[i].wins;
+                let winRateDecimal = data[i].wins / data[i].games * 100;
+                let winRate = winRateDecimal.toFixed(2) + "%";
+
+                allClones[i].querySelector('.rank').textContent = data[i].rank;
+                allClones[i].querySelector('.tier').textContent = data[i].tier;
+                allClones[i].querySelector('.region').textContent = data[i].region;
+                allClones[i].querySelector('.name').textContent = data[i].name;
+                allClones[i].querySelector('.games').textContent = data[i].games;
+                allClones[i].querySelector('.winLoss').innerHTML = 
+                    `<span style="color: green;">${data[i].wins}W</span>
+                    <span style="color: red;">${losses}L</span>`;
+                allClones[i].querySelector('.winrate').textContent = winRate;
+                allClones[i].querySelector('.elo').innerHTML = data[i].rating +
+                    `<span style="color: gray; font-size: 12px;"> / ${data[i].peak_rating}</span>`;
+            }
         }
+
+        await updateLeaderboard(page);
+
+        nextButtons.forEach(nextButton => {
+            if (nextButton) {
+                nextButton.addEventListener('click', async () => {
+                    if (pageNumber < 10) {
+                        pageNumber++;
+                        page++;
+                        console.log(`Switching to page ${pageNumber}`);
+                        numberIcon[0].textContent = pageNumber;
+                        numberIcon[1].textContent = pageNumber;
+
+                        await updateLeaderboard(page);
+                    }
+                });
+            }
+        });
     }, 2000)
 
     let pageNumber = 1
-    nextButtons.forEach(nextButton => {
-        if (nextButton) {
-            nextButton.addEventListener('click', () => {
-                if (pageNumber < 10) {
-                    pageNumber++
-                    console.log(`switching to page ${pageNumber}`)
-                    numberIcon[0].textContent = pageNumber
-                    numberIcon[1].textContent = pageNumber
-                }
-            });
-        }
-    });
 
     previousButtons.forEach(backButton => {
         if (backButton) {
             backButton.addEventListener('click', () =>{
                 if (pageNumber > 1) {
                     pageNumber--
+                    page--
                     console.log(`switching to page ${pageNumber}`)
                     numberIcon[0].textContent = pageNumber
                     numberIcon[1].textContent = pageNumber
