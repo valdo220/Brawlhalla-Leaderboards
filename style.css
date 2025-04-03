@@ -118,3 +118,9 @@ body{
     gap: 1rem;
     margin-bottom: 2rem;
 }
+.blue {
+    background-color: blue;
+}
+.blue:hover {
+    background-color: blue
+}

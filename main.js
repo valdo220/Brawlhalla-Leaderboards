@@ -5,13 +5,20 @@ const container = document.getElementById("container")
 const nextButtons = document.querySelectorAll(".next-button")
 const numberIcon = document.querySelectorAll(".number-icon")
 const previousButtons = document.querySelectorAll(".previous-button")
-let pageNumber = 1
+const selectOne = document.querySelectorAll(".select-one")
+const selectTwo = document.querySelectorAll(".select-two")
+let currentCatagoryOne = null
+let currentCatagoryTwo = null
+console.log(currentCatagoryOne)
 
 async function myApp() {
     let page = 1
     let region = "all"
     let bracket = "1v1"
+    let pageNumber = 1
 
+    console.log(selectOne)
+    console.log(selectTwo)
     let rankingsAsyncAwait = null
     const response = await fetch(`${BASE_URL}/rankings/${bracket}/${region}/${page}?&api_key=${API_KEY}`)
     const data = await response.json()
@@ -38,6 +45,21 @@ async function myApp() {
         }
         return clones
     }
+
+    async function getOriginalColor(catagory, select) {
+        for (let i = 0; i < select.length; i++) {
+            if (catagory !== select[i]) return select[i].classList.remove("blue")
+                console.log(`removed blue from ${select[i]}`)
+        }
+    }
+
+    async function grabCatagory(catagory, selectNumber) {
+        if (catagory === currentCatagoryOne) {
+            currentCatagoryOne = selectNumber; // Update currentCatagoryOne
+        }
+        selectNumber.classList.add("blue");
+    }
+
     setTimeout(async () => {
         async function updateLeaderboard(page) {
             const response = await fetch(`${BASE_URL}/rankings/${bracket}/${region}/${page}?&api_key=${API_KEY}`)
@@ -96,7 +118,51 @@ async function myApp() {
             }
         })
     }, 1000)
-
-
+console.log(selectOne[0])
+    selectOne[0].addEventListener('click',async () => {
+        grabCatagory(currentCatagoryOne, selectOne[0])
+        getOriginalColor(currentCatagoryOne, selectOne)
+        console.log(currentCatagoryOne)
+    })
+    selectOne[1].addEventListener('click',async () => {
+        grabCatagory(currentCatagoryOne, selectOne[1])
+        getOriginalColor(currentCatagoryOne, selectOne)
+        console.log(currentCatagoryOne)
+    })
+    selectTwo[0].addEventListener('click',async () => {
+        grabCatagory(currentCatagoryTwo, selectTwo[0])
+        getOriginalColor(currentCatagoryTwo, selectTwo)
+        console.log(currentCatagoryTwo)
+    })
+    selectTwo[1].addEventListener('click',async () => {
+        grabCatagory(currentCatagoryTwo, selectTwo[1])
+        getOriginalColor(currentCatagoryTwo, selectTwo)
+        console.log(currentCatagoryTwo)
+    })
+    selectTwo[2].addEventListener('click',async () => {
+        grabCatagory(currentCatagoryTwo, selectTwo[2])
+        getOriginalColor(currentCatagoryTwo, selectTwo)
+        console.log(currentCatagoryTwo)
+    })
+    selectTwo[3].addEventListener('click',async () => {
+        grabCatagory(currentCatagoryTwo, selectTwo[3])
+        getOriginalColor(currentCatagoryTwo, selectTwo)
+        console.log(currentCatagoryTwo)
+    })
+    selectTwo[4].addEventListener('click',async () => {
+        grabCatagory(currentCatagoryTwo, selectTwo[4])
+        getOriginalColor(currentCatagoryTwo, selectTwo)
+        console.log(currentCatagoryTwo)
+    })
+    selectTwo[5].addEventListener('click',async () => {
+        grabCatagory(currentCatagoryTwo, selectTwo[5])
+        getOriginalColor(currentCatagoryTwo, selectTwo)
+        console.log(currentCatagoryTwo)
+    })
+    selectTwo[6].addEventListener('click',async () => {
+        grabCatagory(currentCatagoryTwo, selectTwo[6])
+        getOriginalColor(currentCatagoryTwo, selectTwo)
+        console.log(currentCatagoryTwo)
+    })
 }
 myApp()
