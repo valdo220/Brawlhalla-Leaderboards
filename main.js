@@ -57,6 +57,20 @@ async function myApp() {
         return selectNumber
     }
 
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            console.log(this)
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        }
+    }
+
     setTimeout(async () => {
         async function updateLeaderboard(page) {
             const response = await fetch(`${BASE_URL}/rankings/${bracket}/${region}/${page}?&api_key=${API_KEY}`)
@@ -86,7 +100,7 @@ async function myApp() {
 
         nextButtons.forEach(nextButton => {
             if (nextButton) {
-                nextButton.addEventListener('click', async () => {
+                nextButton.addEventListener('click', throttle(async () => {
                     if (pageNumber < 10) {
                         pageNumber++
                         page++
@@ -96,12 +110,12 @@ async function myApp() {
 
                         await updateLeaderboard(page)
                     }
-                });
+                }, 500))
             }
         })
         previousButtons.forEach(backButton => {
             if (backButton) {
-                backButton.addEventListener('click', async () => {
+                backButton.addEventListener('click', throttle(async () => {
                     if (pageNumber > 1) {
                         pageNumber--
                         page--
@@ -111,7 +125,7 @@ async function myApp() {
 
                         await updateLeaderboard(page)
                     }
-                })
+                }, 500))
             }
         })
     }, 1000)
