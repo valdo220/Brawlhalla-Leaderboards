@@ -24,15 +24,12 @@ async function myApp() {
     const data = await response.json()
     rankingsAsyncAwait = data
 
-    async function divAdder() {
-        for (let i = 0; i < 50; i++) {
-            let clone = original.cloneNode(true)
-            container.appendChild(clone)
-            clone.id = "clone-" + i;
-            await new Promise(resolve => setTimeout(resolve, 10))
-        }
+    for (let i = 0; i < data.length; i++) {
+        let clone = original.cloneNode(true)
+        container.appendChild(clone)
+        clone.id = "clone-" + i;
     }
-    divAdder()
+
 
     async function getClones(count) {
         let clones = []
@@ -46,18 +43,18 @@ async function myApp() {
         return clones
     }
 
-    async function getOriginalColor(catagory, select) {
+    async function removeBlueFromPrev(select) {
         for (let i = 0; i < select.length; i++) {
-            if (catagory !== select[i]) return select[i].classList.remove("blue")
-                console.log(`removed blue from ${select[i]}`)
+            if (select[i].classList.contains("blue")){
+                select[i].classList.remove("blue")
+                return
+            }
         }
     }
 
-    async function grabCatagory(catagory, selectNumber) {
-        if (catagory === currentCatagoryOne) {
-            currentCatagoryOne = selectNumber; // Update currentCatagoryOne
-        }
+    function grabCatagory(selectNumber) {
         selectNumber.classList.add("blue");
+        return selectNumber
     }
 
     setTimeout(async () => {
@@ -65,7 +62,7 @@ async function myApp() {
             const response = await fetch(`${BASE_URL}/rankings/${bracket}/${region}/${page}?&api_key=${API_KEY}`)
             const data = await response.json()
 
-            let allClones = await getClones(50)
+            let allClones = await getClones(data.length)
             for (let i = 0; i < allClones.length; i++) {
                 let losses = data[i].games - data[i].wins
                 let winRateDecimal = data[i].wins / data[i].games * 100
@@ -118,50 +115,50 @@ async function myApp() {
             }
         })
     }, 1000)
-console.log(selectOne[0])
-    selectOne[0].addEventListener('click',async () => {
-        grabCatagory(currentCatagoryOne, selectOne[0])
-        getOriginalColor(currentCatagoryOne, selectOne)
+    console.log(selectOne[0])
+    selectOne[0].addEventListener('click', () => {
+        removeBlueFromPrev(selectOne)
+        currentCatagoryOne = grabCatagory(selectOne[0])
         console.log(currentCatagoryOne)
     })
-    selectOne[1].addEventListener('click',async () => {
-        grabCatagory(currentCatagoryOne, selectOne[1])
-        getOriginalColor(currentCatagoryOne, selectOne)
+    selectOne[1].addEventListener('click', () => {
+        removeBlueFromPrev(selectOne)
+        currentCatagoryOne = grabCatagory(selectOne[1])
         console.log(currentCatagoryOne)
     })
-    selectTwo[0].addEventListener('click',async () => {
-        grabCatagory(currentCatagoryTwo, selectTwo[0])
-        getOriginalColor(currentCatagoryTwo, selectTwo)
+    selectTwo[0].addEventListener('click', () => {
+        removeBlueFromPrev(selectTwo)
+        currentCatagoryTwo = grabCatagory(selectTwo[0])
         console.log(currentCatagoryTwo)
     })
-    selectTwo[1].addEventListener('click',async () => {
-        grabCatagory(currentCatagoryTwo, selectTwo[1])
-        getOriginalColor(currentCatagoryTwo, selectTwo)
+    selectTwo[1].addEventListener('click', () => {
+        removeBlueFromPrev(selectTwo)
+        currentCatagoryTwo = grabCatagory(selectTwo[1])
         console.log(currentCatagoryTwo)
     })
-    selectTwo[2].addEventListener('click',async () => {
-        grabCatagory(currentCatagoryTwo, selectTwo[2])
-        getOriginalColor(currentCatagoryTwo, selectTwo)
+    selectTwo[2].addEventListener('click', () => {
+        removeBlueFromPrev(selectTwo)
+        currentCatagoryTwo = grabCatagory(selectTwo[2])
         console.log(currentCatagoryTwo)
     })
-    selectTwo[3].addEventListener('click',async () => {
-        grabCatagory(currentCatagoryTwo, selectTwo[3])
-        getOriginalColor(currentCatagoryTwo, selectTwo)
+    selectTwo[3].addEventListener('click', () => {
+        removeBlueFromPrev(selectTwo)
+        currentCatagoryTwo = grabCatagory(selectTwo[3])
         console.log(currentCatagoryTwo)
     })
-    selectTwo[4].addEventListener('click',async () => {
-        grabCatagory(currentCatagoryTwo, selectTwo[4])
-        getOriginalColor(currentCatagoryTwo, selectTwo)
+    selectTwo[4].addEventListener('click', () => {
+        removeBlueFromPrev(selectTwo)
+        currentCatagoryTwo = grabCatagory(selectTwo[4])
         console.log(currentCatagoryTwo)
     })
-    selectTwo[5].addEventListener('click',async () => {
-        grabCatagory(currentCatagoryTwo, selectTwo[5])
-        getOriginalColor(currentCatagoryTwo, selectTwo)
+    selectTwo[5].addEventListener('click', () => {
+        removeBlueFromPrev(selectTwo)
+        currentCatagoryTwo = grabCatagory(selectTwo[5])
         console.log(currentCatagoryTwo)
     })
-    selectTwo[6].addEventListener('click',async () => {
-        grabCatagory(currentCatagoryTwo, selectTwo[6])
-        getOriginalColor(currentCatagoryTwo, selectTwo)
+    selectTwo[6].addEventListener('click', () => {
+        removeBlueFromPrev(selectTwo)
+        currentCatagoryTwo = grabCatagory(selectTwo[6])
         console.log(currentCatagoryTwo)
     })
 }
