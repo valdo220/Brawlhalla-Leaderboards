@@ -1,4 +1,4 @@
-/* body {
+body {
     position: relative;
     margin: 0;
     height: 100vh;
@@ -12,10 +12,10 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url() center/cover no-repeat;
+    background: url("C:\Users\oswal\Documents\CODE-practice\projects\Brawlhalla-Leaderboards\images\brawhalla-ranked-background.jpg") center/cover no-repeat;
     filter: brightness(50%);
     z-index: -1;
-} */
+}
 body{
     font-family: 'Poppins', sans-serif;
 }
@@ -87,6 +87,11 @@ body{
 .name {
     flex: auto;
     text-align: start;
+}
+.player2 {
+    flex: auto;
+    text-align: start;
+    display: none;
 }
 .games {
     text-align: center;

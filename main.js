@@ -52,6 +52,13 @@ async function myApp() {
         }
     }
 
+    async function switchingRegions(select, selectNumber) {
+        for (let i = 0; i < select.length; i++) {
+            if (select[i].classList.contains("blue")) {
+                region = selectNumber.textContent.toLowerCase()
+            }
+        }
+    }
     function grabCatagory(selectNumber) {
         selectNumber.classList.add("blue");
         return selectNumber
@@ -71,7 +78,7 @@ async function myApp() {
         }
     }
 
-    setTimeout(async () => {
+
         async function updateLeaderboard(page) {
             const response = await fetch(`${BASE_URL}/rankings/${bracket}/${region}/${page}?&api_key=${API_KEY}`)
             const data = await response.json()
@@ -128,12 +135,12 @@ async function myApp() {
                 }, 500))
             }
         })
-    }, 1000)
     console.log(selectOne[0])
-    selectOne[0].addEventListener('click', () => {
+    selectOne[0].addEventListener('click', async() => {
         removeBlueFromPrev(selectOne)
         currentCatagoryOne = grabCatagory(selectOne[0])
         console.log(currentCatagoryOne)
+        console.log(region)
     })
     selectOne[1].addEventListener('click', () => {
         removeBlueFromPrev(selectOne)
@@ -143,36 +150,57 @@ async function myApp() {
     selectTwo[0].addEventListener('click', () => {
         removeBlueFromPrev(selectTwo)
         currentCatagoryTwo = grabCatagory(selectTwo[0])
+        switchingRegions(selectTwo, selectTwo[0])
+        updateLeaderboard(page)
+        console.log(region)
         console.log(currentCatagoryTwo)
     })
     selectTwo[1].addEventListener('click', () => {
         removeBlueFromPrev(selectTwo)
         currentCatagoryTwo = grabCatagory(selectTwo[1])
+        switchingRegions(selectTwo, selectTwo[1])
+        updateLeaderboard(page)
+        console.log(region)
         console.log(currentCatagoryTwo)
     })
     selectTwo[2].addEventListener('click', () => {
         removeBlueFromPrev(selectTwo)
         currentCatagoryTwo = grabCatagory(selectTwo[2])
+        switchingRegions(selectTwo, selectTwo[2])
+        updateLeaderboard(page)
+        console.log(region)
         console.log(currentCatagoryTwo)
     })
     selectTwo[3].addEventListener('click', () => {
         removeBlueFromPrev(selectTwo)
         currentCatagoryTwo = grabCatagory(selectTwo[3])
+        switchingRegions(selectTwo, selectTwo[3])
+        updateLeaderboard(page)
+        console.log(region)
         console.log(currentCatagoryTwo)
     })
     selectTwo[4].addEventListener('click', () => {
         removeBlueFromPrev(selectTwo)
         currentCatagoryTwo = grabCatagory(selectTwo[4])
+        switchingRegions(selectTwo, selectTwo[4])
+        updateLeaderboard(page)
+        console.log(region)
         console.log(currentCatagoryTwo)
     })
     selectTwo[5].addEventListener('click', () => {
         removeBlueFromPrev(selectTwo)
         currentCatagoryTwo = grabCatagory(selectTwo[5])
+        switchingRegions(selectTwo, selectTwo[5])
+        updateLeaderboard(page)
+        console.log(region)
         console.log(currentCatagoryTwo)
     })
     selectTwo[6].addEventListener('click', () => {
         removeBlueFromPrev(selectTwo)
         currentCatagoryTwo = grabCatagory(selectTwo[6])
+        switchingRegions(selectTwo, selectTwo[6])
+        updateLeaderboard(page)
+        console.log(region)
         console.log(currentCatagoryTwo)
     })
 }
